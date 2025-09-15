@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+*.sqlite3
+
+# Django
+*.log
+*.pot
+*.pyc
+staticfiles/
+media/
+
+# Docker
+*.env
+docker-compose.override.yml
+
+# VS Code
+.vscode/
+
+# Helm
+*.tgz
+charts/
