@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+
+    environment {
+        KUBECONFIG = '/var/lib/jenkins/.kube/config'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/ton-compte/HelmHub.git', branch: 'main'
+            }
+        }
+
+        stage('Lint Helm Chart') {
+            steps {
+                sh 'helm lint ./charts/helmhub'
+            }
+        }
+
+        stage('Package Helm Chart') {
+            steps {
+                sh 'helm package ./charts/helmhub'
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh 'helm upgrade --install helmhub ./helmhub-*.tgz --namespace helmhub --create-namespace'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline terminé avec succès !'
+        }
+        failure {
+            echo 'Le pipeline a échoué.'
+        }
+    }
+}
