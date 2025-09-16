@@ -40,7 +40,7 @@ The project demonstrates:
 </a>
 
 ---
-<img src="" alt="result" width="100" height="100">
+<img src="Screenshot from 2025-09-16 02-09-10.png" alt="result" width="1000" height="1000">
 
 ## Setup Instructions
 1. Install **Helm** and **kubectl** on your system.  
