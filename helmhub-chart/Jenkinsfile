@@ -8,19 +8,22 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/ton-compte/HelmHub.git', branch: 'main'
+                git(
+                    url: 'https://github.com/AyachyIbtyssem/HelmHub.git', 
+                    branch: 'main',
+                    credentialsId: 'github-pat' 
             }
         }
 
         stage('Lint Helm Chart') {
             steps {
-                sh 'helm lint ./charts/helmhub'
+                sh 'helm lint ./helmhub-chart'
             }
         }
 
         stage('Package Helm Chart') {
             steps {
-                sh 'helm package ./charts/helmhub'
+                sh 'helm package ./helmhub-chart'
             }
         }
 
